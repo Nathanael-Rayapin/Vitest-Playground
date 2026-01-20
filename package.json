@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "vitest --project default",
+    "test-verbose": "vitest --reporter verbose",
+    "test-new-project": "vitest --project new",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.17",
+    "vitest": "^4.0.17"
+  }
+}
