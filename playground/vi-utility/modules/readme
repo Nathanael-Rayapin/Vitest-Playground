@@ -1,0 +1,141 @@
+# 📦 Qu’est-ce qu’un module en JavaScript (et dans Vitest) ?
+
+Avant de parler de **mock de module**, il est essentiel de bien comprendre ce qu’est un **module**.
+
+## 🔹 Définition simple
+
+En JavaScript (et donc dans Vitest) :
+
+> **Un module est simplement un fichier qui exporte quelque chose.**
+
+Cela peut être :
+
+* une fonction
+* une variable
+* une constante
+* une classe
+* ou plusieurs exports à la fois
+
+👉 **Chaque fichier qui contient un `export` est un module.**
+
+## 🔹 Exemple de module
+
+### `example.js`
+
+```js
+export function answer() {
+  return 42
+}
+
+export const variable = 'example'
+```
+
+➡️ Ce fichier est un **module**, car il exporte :
+
+* une fonction `answer`
+* une constante `variable`
+
+---
+
+## 🔹 Le "module object" (objet de module)
+
+Quand on importe **tout le module d’un coup**, on obtient ce qu’on appelle un **module object**.
+
+### Import du module entier
+
+```js
+import * as exampleObject from './example.js'
+```
+
+`exampleObject` est un **objet namespace** qui contient **tous les exports du module** :
+
+```js
+exampleObject.answer   // function
+exampleObject.variable // 'example'
+```
+
+👉 On peut le voir comme :
+
+```js
+{
+  answer: [Function],
+  variable: 'example'
+}
+```
+
+## 🔹 Import nommé ≠ absence de module object
+
+Même si tu fais un import nommé :
+
+```js
+import { answer, variable } from './example.js'
+```
+
+👉 **Le module object existe quand même en interne**.
+
+La différence est simplement :
+
+* tu ne le manipules pas directement
+* le bundler / runtime le gère pour toi
+
+Vitest (et les outils de mock) peuvent **toujours référencer ce module object**.
+
+## 🔹 Pourquoi c’est important pour Vitest ?
+
+Vitest **mocke des modules**, pas des fonctions isolées.
+
+Quand tu écris :
+
+```js
+vi.mock('./example.js')
+```
+
+👉 Vitest :
+
+* intercepte le **module object**
+* remplace ses exports (`answer`, `variable`, etc.)
+* redirige tous les imports vers la version mockée
+
+C’est pour cela que :
+
+* les mocks doivent être définis **au niveau du module**
+* tu ne peux pas mocker un export depuis l’intérieur du fichier lui-même
+
+## 🔹 Où peut-on accéder au module object ?
+
+❌ **Impossible depuis le module lui-même**
+
+```js
+// example.js ❌
+exampleObject.answer = ...
+```
+
+✔️ **Possible depuis l’extérieur**, par exemple dans un test :
+
+```js
+import * as exampleObject from './example.js'
+
+// ici, exampleObject est accessible
+```
+
+👉 C’est **exactement pour ça** que les mocks se font :
+
+* dans les fichiers de test
+* ou dans des fichiers dédiés aux mocks
+
+## 🧠 Résumé mental
+
+* 📄 **Un module = un fichier avec des exports**
+* 📦 **Le module object = l’objet qui contient tous les exports**
+* 🔗 `import * as module` donne accès à cet objet
+* 🧪 Vitest mocke **le module object**, pas juste une fonction
+* 🚫 Un module ne peut pas se modifier lui-même
+
+## ✅ Pourquoi cette notion est cruciale ?
+
+Comprendre ça permet de :
+
+* maîtriser `vi.mock`
+* comprendre pourquoi les mocks sont globaux
+* éviter les erreurs de portée
+* écrire des tests plus fiables et plus lisibles

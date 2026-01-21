@@ -30,6 +30,13 @@ export default defineConfig({
                     }
                 },
             },
+            {
+                test: {
+                    include: ['./playground/vi-utility/**/*.test.{ts,js}'],
+                    name: 'vi-utility',
+                    environment: 'node'
+                },
+            },
         ]
     }
 })

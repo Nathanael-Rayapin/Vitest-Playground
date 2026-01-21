@@ -3,7 +3,8 @@
     "test": "vitest --project default",
     "test-verbose": "vitest --reporter verbose",
     "test-new-project": "vitest --project new",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "test-vi-utility": "vitest --project vi-utility"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.17",
