@@ -2,9 +2,9 @@
   "scripts": {
     "test": "vitest --project default",
     "test-verbose": "vitest --reporter verbose",
-    "test-new-project": "vitest --project new",
-    "coverage": "vitest run --coverage",
-    "test-vi-utility": "vitest --project vi-utility"
+    "test-extend": "vitest --project extend",
+    "test-vi-utility": "vitest --project vi-utility",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.17",

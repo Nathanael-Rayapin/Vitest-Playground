@@ -23,10 +23,10 @@ export default defineConfig({
                         './playground/test-context/extend.test.js', 
                         './playground/test-context/extend-syntax-explication.test.js'
                     ],
-                    name: 'new',
+                    name: 'extend',
                     environment: 'node',
                     provide: {
-                        url: '/new'
+                        url: '/extend'
                     }
                 },
             },

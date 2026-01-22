@@ -206,7 +206,7 @@ const newTest2 = baseTest.extend({
 })
 
 newTest2('should expect to current url based on the project launch from sript', ({ url }) => {
-    expect(url).toBe('/new')
+    expect(url).toBe('/extend')
 })
 
 
