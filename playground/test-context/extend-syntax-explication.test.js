@@ -1,4 +1,4 @@
-import { test as baseTest, expect, describe } from 'vitest'
+import { test as baseTest, expect } from 'vitest'
 
 /*
 ════════════════════════════════════════════════════════════
