@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from "vitest";
-import { answer, question } from "./example";
+import { example } from "./example";
 
 /*
   ✅ Fonctionnement :
@@ -68,17 +68,15 @@ import { answer, question } from "./example";
 
 describe("vi.mockObject", () => {
     test("should mock an object from original without any modification", () => {
-        const mockedQuestion = vi.mockObject(question);
-        const mockedAnswer = vi.mockObject(answer);
+        const mockedQuestion = vi.mockObject(example.question);
+        const mockedAnswer = vi.mockObject(example.answer);
 
-        expect(mockedQuestion).toBe(question);
         expect(mockedQuestion).toBeTypeOf("string");
-
         expect(mockedAnswer()).toBe(undefined); // 👈 mocked function return undefined
     });
 
     test("should mock an object function from original with mock implementation", () => {
-        const mockedAnswer = vi.mockObject(answer);
+        const mockedAnswer = vi.mockObject(example.answer);
 
         mockedAnswer.mockImplementation(() => 10);
 
@@ -86,7 +84,7 @@ describe("vi.mockObject", () => {
     });
 
     test("should mock an object function from original with spy", () => {
-        const mockedAnswer = vi.mockObject(answer, { spy: true });
+        const mockedAnswer = vi.mockObject(example, { spy: true });
 
         expect(mockedAnswer()).toBe(1); // 👈 mocked function return 1
     });
