@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "test": "vitest --project default",
     "test-verbose": "vitest --reporter verbose",
+    "test": "vitest --project default",
     "test-extend": "vitest --project extend",
     "test-vi-utility": "vitest --project vi-utility",
+    "test-api-reference": "vitest --project test-api-reference",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {

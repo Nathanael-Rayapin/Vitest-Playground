@@ -37,6 +37,13 @@ export default defineConfig({
                     environment: 'node'
                 },
             },
+            {
+                test: {
+                    include: ['./playground/test-api-reference/**/*.test.{ts,js}'],
+                    name: 'test-api-reference',
+                    environment: 'node'
+                },
+            },
         ]
     }
 })
