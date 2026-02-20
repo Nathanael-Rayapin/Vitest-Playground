@@ -7,7 +7,7 @@ export default defineConfig({
                 test: {
                     include: ['./playground/test-context/**/*.test.{ts,js}'],
                     exclude: [
-                        './playground/test-context/extend.test.js', 
+                        './playground/test-context/extend.test.js',
                         './playground/test-context/extend-syntax-explication.test.js'
                     ],
                     name: 'default',
@@ -20,7 +20,7 @@ export default defineConfig({
             {
                 test: {
                     include: [
-                        './playground/test-context/extend.test.js', 
+                        './playground/test-context/extend.test.js',
                         './playground/test-context/extend-syntax-explication.test.js'
                     ],
                     name: 'extend',

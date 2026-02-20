@@ -1,10 +1,14 @@
 import { describe, expect, test } from 'vitest'
 
+/*
+  Se référer à test-context/extend.test.js pour plus de détails.
+*/
+
 describe('test.extend', () => {
   const todos = [];
 
   const myTest = test.extend({
-    todos: async ({}, use) => {
+    todos: async ({ }, use) => {
       todos.push(1, 2, 3)
       await use(todos)
       todos.length = 0
